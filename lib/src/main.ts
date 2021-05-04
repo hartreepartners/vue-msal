@@ -122,7 +122,7 @@ export class MSAL implements MSALBasic {
     async acquireToken(request = this.request, retries = 0) {
         try {
             //Always start with acquireTokenSilent to obtain a token in the signed in user from cache
-            let req = request;
+            let req = { ...request};
             if (this.auth.silentRedirectUri && !request.redirectUri) {
                 req.redirectUri = this.auth.silentRedirectUri;
             }

@@ -181,7 +181,7 @@ var MSAL = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 6]);
-                        req = request;
+                        req = __assign({}, request);
                         if (this.auth.silentRedirectUri && !request.redirectUri) {
                             req.redirectUri = this.auth.silentRedirectUri;
                         }
