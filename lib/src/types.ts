@@ -12,6 +12,7 @@ export type Auth = {
     tenantName?: string,
     validateAuthority?: boolean;
     redirectUri?: string | (() => string);
+    silentRedirectUri?: string | (() => string);
     postLogoutRedirectUri?: string | (() => string);
     navigateToLoginRequestUrl?: boolean;
     requireAuthOnInitialize?: boolean,
@@ -23,6 +24,7 @@ export type Auth = {
 
 export type Request = {
     scopes?: string[]
+    redirectUri?: string | (() => string);
 }
 
 export type GraphDetailedObject = AxiosRequestConfig & {
