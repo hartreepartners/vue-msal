@@ -78,7 +78,8 @@ var msalPlugin = /** @class */ (function () {
                     }
                 }); });
             },
-            saveCustomData: function (key, data) { msal.saveCustomData(key, data); }
+            saveCustomData: function (key, data) { msal.saveCustomData(key, data); },
+            clearCache: function () { msal.clearCache(); }
         };
         return exposed;
     }

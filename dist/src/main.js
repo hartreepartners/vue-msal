@@ -151,6 +151,9 @@ var MSAL = /** @class */ (function () {
             this.lib.loginRedirect(this.request);
         }
     };
+    MSAL.prototype.clearCache = function () {
+        this.lib.clearCache();
+    };
     MSAL.prototype.signOut = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {

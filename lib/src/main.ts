@@ -110,6 +110,9 @@ export class MSAL implements MSALBasic {
             this.lib.loginRedirect(this.request);
         }
     }
+    clearCache() {
+        this.lib.clearCache();
+    }
     async signOut() {
         if (this.options.auth.beforeSignOut) {
             await this.options.auth.beforeSignOut(this);
