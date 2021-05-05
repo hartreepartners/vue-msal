@@ -122,6 +122,19 @@ export class MSAL implements MSALBasic {
     isAuthenticated() {
         return !this.lib.isCallback(window.location.hash) && !!this.lib.getAccount();
     }
+    clearTempCookies() {
+        const cookies = document.cookie.split(";");
+        debugger
+        cookies.forEach(cookieString => {
+            const [
+                cookieName
+            ] = cookieString.trim().split("=");
+            debugger
+            if (cookieName.indexOf("nonce.idtoken") > -1 || cookieName.indexOf("authority") > -1) {
+                document.cookie = encodeURIComponent(cookieName) + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+            }
+        });
+    }
     async acquireToken(request = this.request, retries = 0) {
         try {
             //Always start with acquireTokenSilent to obtain a token in the signed in user from cache
@@ -133,6 +146,7 @@ export class MSAL implements MSALBasic {
             const response = await this.lib.acquireTokenSilent(req);
             console.log('acquretoken silen: response', response)
             this.handleTokenResponse(null, response);
+            this.clearTempCookies();
             return response;
         } catch (error) {
             // Upon acquireTokenSilent failure (due to consent or interaction or login required ONLY)

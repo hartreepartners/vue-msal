@@ -174,6 +174,17 @@ var MSAL = /** @class */ (function () {
     MSAL.prototype.isAuthenticated = function () {
         return !this.lib.isCallback(window.location.hash) && !!this.lib.getAccount();
     };
+    MSAL.prototype.clearTempCookies = function () {
+        var cookies = document.cookie.split(";");
+        debugger;
+        cookies.forEach(function (cookieString) {
+            var cookieName = cookieString.trim().split("=")[0];
+            debugger;
+            if (cookieName.indexOf("nonce.idtoken") > -1 || cookieName.indexOf("authority") > -1) {
+                document.cookie = encodeURIComponent(cookieName) + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+            }
+        });
+    };
     MSAL.prototype.acquireToken = function (request, retries) {
         if (request === void 0) { request = this.request; }
         if (retries === void 0) { retries = 0; }
@@ -194,6 +205,7 @@ var MSAL = /** @class */ (function () {
                         response = _a.sent();
                         console.log('acquretoken silen: response', response);
                         this.handleTokenResponse(null, response);
+                        this.clearTempCookies();
                         return [2 /*return*/, response];
                     case 2:
                         error_1 = _a.sent();
