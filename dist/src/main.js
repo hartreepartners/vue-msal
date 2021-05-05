@@ -238,7 +238,7 @@ var MSAL = /** @class */ (function () {
             this.setToken('accessToken', response.accessToken, response.expiresOn, response.scopes);
             setCallback = true;
         }
-        if (this.data.idToken !== response.idToken.rawIdToken) {
+        if (response.idToken && this.data.idToken !== response.idToken.rawIdToken) {
             this.setToken('idToken', response.idToken.rawIdToken, new Date(response.idToken.expiration * 1000), [this.auth.clientId]);
             setCallback = true;
         }
