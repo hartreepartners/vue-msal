@@ -199,8 +199,6 @@ var MSAL = /** @class */ (function () {
                         console.log('acquire token silent error: ', error_1);
                         if (!this.requiresInteraction(error_1.errorCode)) return [3 /*break*/, 3];
                         console.log('acquire token using redirect');
-                        console.log('clearing cache even in acquireTokenRedirect');
-                        this.lib.clearCache();
                         this.lib.acquireTokenRedirect(request);
                         return [3 /*break*/, 5];
                     case 3:
