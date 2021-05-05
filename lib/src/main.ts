@@ -136,9 +136,11 @@ export class MSAL implements MSALBasic {
             // Call acquireTokenRedirect
             console.log('acquire token silent error: ', error)
             if (this.requiresInteraction(error.errorCode)) {
-                console.log('acquire token using redirect')
+                console.log('acquire token using redirect & clearing cache before using redirect');
+                this.lib.clearCache();
                 this.lib.acquireTokenRedirect(request);
             } else if(retries > 0) {
+                console.log('retrying acquire token retry number: ', retries)
                 return await new Promise((resolve) => {
                     setTimeout(async () => {
                         const res = await this.acquireToken(request, retries-1);

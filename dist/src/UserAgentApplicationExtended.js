@@ -25,6 +25,9 @@ var UserAgentApplicationExtended = /** @class */ (function (_super) {
         _this.store = _this.cacheStorage;
         return _this;
     }
+    UserAgentApplicationExtended.prototype.clearCache = function () {
+        _super.prototype.clearCache.call(this);
+    };
     return UserAgentApplicationExtended;
 }(msal_1.UserAgentApplication));
 exports.UserAgentApplicationExtended = UserAgentApplicationExtended;

@@ -198,11 +198,13 @@ var MSAL = /** @class */ (function () {
                         // Call acquireTokenRedirect
                         console.log('acquire token silent error: ', error_1);
                         if (!this.requiresInteraction(error_1.errorCode)) return [3 /*break*/, 3];
-                        console.log('acquire token using redirect');
+                        console.log('acquire token using redirect & clearing cache before using redirect');
+                        this.lib.clearCache();
                         this.lib.acquireTokenRedirect(request);
                         return [3 /*break*/, 5];
                     case 3:
                         if (!(retries > 0)) return [3 /*break*/, 5];
+                        console.log('retrying acquire token retry number: ', retries);
                         return [4 /*yield*/, new Promise(function (resolve) {
                                 setTimeout(function () { return __awaiter(_this, void 0, void 0, function () {
                                     var res;

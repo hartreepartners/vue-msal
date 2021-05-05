@@ -6,4 +6,7 @@ export class UserAgentApplicationExtended extends UserAgentApplication {
         super(configuration);
         this.store = this.cacheStorage
     }
+    public clearCache(): void {
+        super.clearCache();
+    }
 }
