@@ -124,7 +124,6 @@ export class MSAL implements MSALBasic {
     }
     clearTempCookies() {
         const cookies = document.cookie.split(";");
-        debugger
         cookies.forEach(cookieString => {
             const [
                 cookieName

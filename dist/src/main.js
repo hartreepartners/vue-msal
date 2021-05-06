@@ -176,7 +176,6 @@ var MSAL = /** @class */ (function () {
     };
     MSAL.prototype.clearTempCookies = function () {
         var cookies = document.cookie.split(";");
-        debugger;
         cookies.forEach(function (cookieString) {
             var cookieName = cookieString.trim().split("=")[0];
             if (cookieName.indexOf("nonce.idtoken") > -1 || cookieName.indexOf("authority") > -1) {
