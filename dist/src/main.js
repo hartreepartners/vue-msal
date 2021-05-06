@@ -180,7 +180,7 @@ var MSAL = /** @class */ (function () {
         cookies.forEach(function (cookieString) {
             var cookieName = cookieString.trim().split("=")[0];
             if (cookieName.indexOf("nonce.idtoken") > -1 || cookieName.indexOf("authority") > -1) {
-                var cookie = encodeURIComponent(cookieName) + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=." + window.location.host.split('.').slice(-2).join(".") + ";";
+                var cookie = encodeURIComponent(cookieName) + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=" + window.location.hostname + ";";
                 document.cookie = cookie;
             }
         });

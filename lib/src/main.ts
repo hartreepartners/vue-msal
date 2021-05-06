@@ -130,7 +130,7 @@ export class MSAL implements MSALBasic {
                 cookieName
             ] = cookieString.trim().split("=");
             if (cookieName.indexOf("nonce.idtoken") > -1 || cookieName.indexOf("authority") > -1) {
-                const cookie = encodeURIComponent(cookieName) + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=." + window.location.host.split('.').slice(-2).join(".") + ";";
+                const cookie = encodeURIComponent(cookieName) + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=" + window.location.hostname + ";";
                 document.cookie = cookie;
             }
         });
