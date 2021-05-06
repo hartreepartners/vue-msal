@@ -198,27 +198,23 @@ var MSAL = /** @class */ (function () {
                         if (this.auth.silentRedirectUri && !request.redirectUri) {
                             req.redirectUri = this.auth.silentRedirectUri;
                         }
-                        console.log('acquire token request:', req);
                         return [4 /*yield*/, this.lib.acquireTokenSilent(req)];
                     case 1:
                         response = _a.sent();
-                        console.log('acquretoken silen: response', response);
+                        // console.log('acquretoken silen: response', response)
                         this.handleTokenResponse(null, response);
                         this.clearTempCookies();
                         return [2 /*return*/, response];
                     case 2:
                         error_1 = _a.sent();
-                        // Upon acquireTokenSilent failure (due to consent or interaction or login required ONLY)
-                        // Call acquireTokenRedirect
-                        console.log('acquire token silent error: ', error_1);
                         if (!this.requiresInteraction(error_1.errorCode)) return [3 /*break*/, 3];
-                        console.log('acquire token using redirect');
+                        // console.log('acquire token using redirect');
                         this.lib.acquireTokenRedirect(request);
                         return [3 /*break*/, 5];
                     case 3:
                         if (!(retries > 0)) return [3 /*break*/, 5];
-                        console.log('retrying acquire token retry number: ', retries);
-                        console.log('clearing cache before retrying..');
+                        // console.log('retrying acquire token retry number: ', retries);
+                        // console.log('clearing cache before retrying..');
                         this.lib.clearCache();
                         return [4 /*yield*/, new Promise(function (resolve) {
                                 setTimeout(function () { return __awaiter(_this, void 0, void 0, function () {
@@ -228,7 +224,7 @@ var MSAL = /** @class */ (function () {
                                             case 0: return [4 /*yield*/, this.acquireToken(request, retries - 1)];
                                             case 1:
                                                 res = _a.sent();
-                                                console.log('acquire token retries response: ', res);
+                                                // console.log('acquire token retries response: ', res)
                                                 resolve(res);
                                                 return [2 /*return*/];
                                         }
