@@ -41,11 +41,11 @@ var main_1 = require("./src/main");
 var mixin_1 = require("./mixin");
 exports.msalMixin = mixin_1.mixin;
 var msalPlugin = /** @class */ (function () {
-    function msalPlugin(options, Vue) {
-        if (Vue === void 0) { Vue = undefined; }
+    function msalPlugin(options, app) {
+        if (app === void 0) { app = undefined; }
         var msal = new main_1.MSAL(options);
-        if (Vue && options.framework && options.framework.globalMixin) {
-            Vue.mixin(mixin_1.mixin);
+        if (app && options.framework && options.framework.globalMixin) {
+            app.mixin(mixin_1.mixin);
         }
         var exposed = {
             data: msal.data,
@@ -83,8 +83,8 @@ var msalPlugin = /** @class */ (function () {
         };
         return exposed;
     }
-    msalPlugin.install = function (Vue, options) {
-        Vue.prototype.$msal = new msalPlugin(options, Vue);
+    msalPlugin.install = function (app, options) {
+        app.config.globalProperties.$msal = new msalPlugin(options, app);
     };
     return msalPlugin;
 }());
