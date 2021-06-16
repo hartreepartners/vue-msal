@@ -128,7 +128,7 @@ var MSAL = /** @class */ (function () {
                 _this.saveCallback('auth.onAuthentication', error, response);
             }
             else {
-                _this.acquireToken();
+                // this.acquireToken();
             }
         });
         if (this.auth.requireAuthOnInitialize) {
@@ -137,11 +137,11 @@ var MSAL = /** @class */ (function () {
         this.data.isAuthenticated = this.isAuthenticated();
         if (this.data.isAuthenticated) {
             this.data.user = this.lib.getAccount();
-            this.acquireToken().then(function () {
-                if (_this.graph.callAfterInit) {
+            if (this.graph.callAfterInit) {
+                this.acquireToken().then(function () {
                     _this.initialMSGraphCall();
-                }
-            });
+                });
+            }
         }
         this.getStoredCustomData();
     }
@@ -173,6 +173,7 @@ var MSAL = /** @class */ (function () {
     };
     MSAL.prototype.isAuthenticated = function () {
         return !this.lib.isCallback(window.location.hash) && !!this.lib.getAccount();
+        // return  !!this.lib.getAccount();
     };
     MSAL.prototype.clearTempCookies = function () {
         var cookies = document.cookie.split(";");
