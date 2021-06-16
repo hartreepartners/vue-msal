@@ -86,7 +86,7 @@ export class MSAL implements MSALBasic {
             if (!this.isAuthenticated()) {
                 this.saveCallback('auth.onAuthentication', error, response);
             } else {
-                this.acquireToken();
+                // this.acquireToken();
             }
         });
 
@@ -96,11 +96,12 @@ export class MSAL implements MSALBasic {
         this.data.isAuthenticated = this.isAuthenticated();
         if (this.data.isAuthenticated) {
             this.data.user = this.lib.getAccount();
-            this.acquireToken().then(() => {
-                if (this.graph.callAfterInit) {
+            if (this.graph.callAfterInit) {
+                this.acquireToken().then(() => {
                     this.initialMSGraphCall();
-                }
-            });
+                });
+            }
+            
         }
         this.getStoredCustomData();
     }
